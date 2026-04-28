@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Compass AI - Discover Your Future</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.1">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <i class="fas fa-compass"></i>
+                <span>CareerCompass</span>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="/" class="nav-link {{ 'active' if request.endpoint == 'home' }}">Home</a>
+                <a href="/quiz" class="nav-link {{ 'active' if request.endpoint == 'quiz' }}">AI Quiz</a>
+                <a href="/roadmap" class="nav-link {{ 'active' if request.endpoint == 'roadmap' }}">Roadmaps</a>
+                <a href="/cv" class="nav-link {{ 'active' if request.endpoint == 'cv_generator' }}">CV Builder</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer glass-card" style="margin: 4rem 2rem 2rem; border-radius: 32px;">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About CareerCompass</h4>
+                <p>Empowering students and professionals to find their ideal career path through AI-driven insights and structured learning.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="/quiz">Career Quiz</a>
+                <a href="/roadmap">Learning Roadmaps</a>
+                <a href="/cv">CV Generator</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <a href="#"><i class="fas fa-envelope"></i> support@careercompass.ai</a>
+                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Career Compass AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}?v=1.1"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!-- templates/roadmap.html -->
+{% extends "base.html" %}
+
+{% block title %}Career Roadmap - Career Compass AI{% endblock %}
+
+{% block content %}
+<div class="roadmap-container fade-in">
+    {% if not roadmap %}
+    <div class="roadmap-selection">
+        <div class="roadmap-header" style="text-align: center; margin-bottom: 4rem;">
+            <h1 class="hero-title"><span class="gradient-text">Career Roadmaps</span></h1>
+            <p class="hero-description">Select a career path to view its detailed learning roadmap.</p>
+        </div>
+        
+        <div class="features-grid">
+            {% for id, career in careers.items() %}
+            <a href="{{ url_for('roadmap', career=id) }}" class="feature-card glass-card" style="text-decoration: none; color: inherit; text-align: left;">
+                <div class="feature-icon" style="background: linear-gradient(135deg, {{ career.color if career.color else 'var(--primary)' }}, var(--secondary));">
+                    <i class="fas {{ career.icon if career.icon else 'fa-rocket' }}"></i>
+                </div>
+                <h3>{{ career.name }}</h3>
+                <p style="color: var(--text-dim); font-size: 0.875rem; margin-top: 0.5rem;">{{ career.description }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div class="roadmap-header" style="text-align: center; margin-bottom: 4rem;">
+        <h1 class="hero-title"><span class="gradient-text">{{ career_name }}</span> Roadmap</h1>
+        <p class="hero-description">Your strategic path from foundation to industry mastery.</p>
+    </div>
+
+    <div class="timeline">
+        <!-- Beginner Stage -->
+        <div class="timeline-stage">
+            <div class="stage-marker beginner">
+                <div class="marker-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="stage-label">Phase 01</div>
+            </div>
+            <div class="stage-content">
+                <div class="stage-card glass-card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--accent);">{{ roadmap.beginner.title }}</h3>
+                    <div class="stage-steps">
+                        <h4 style="color: var(--text-dim); margin-bottom: 1rem;">Core Competencies:</h4>
+                        <ul style="list-style: none;">
+                            {% if roadmap.beginner.steps %}
+                            {% for step in roadmap.beginner.steps %}
+                            <li style="margin-bottom: 0.75rem;"><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 0.75rem;"></i> {{ step }}</li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="stage-tools" style="margin-top: 2rem;">
+                        <h4 style="color: var(--text-dim); margin-bottom: 1rem;">Tech Stack:</h4>
+                        <div class="tools-list">
+                            {% if roadmap.beginner.tools %}
+                            {% for tool in roadmap.beginner.tools %}
+                            <span class="tool-tag" style="background: rgba(16, 185, 129, 0.1); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.2); padding: 0.4rem 1rem; border-radius: 10px; font-size: 0.875rem; font-weight: 600;">{{ tool }}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Intermediate Stage -->
+        <div class="timeline-stage">
+            <div class="stage-marker intermediate">
+                <div class="marker-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stage-label">Phase 02</div>
+            </div>
+            <div class="stage-content">
+                <div class="stage-card glass-card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary);">{{ roadmap.intermediate.title }}</h3>
+                    <div class="stage-steps">
+                        <h4 style="color: var(--text-dim); margin-bottom: 1rem;">Advanced Skills:</h4>
+                        <ul style="list-style: none;">
+                            {% if roadmap.intermediate.steps %}
+                            {% for step in roadmap.intermediate.steps %}
+                            <li style="margin-bottom: 0.75rem;"><i class="fas fa-bolt" style="color: var(--primary); margin-right: 0.75rem;"></i> {{ step }}</li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="stage-tools" style="margin-top: 2rem;">
+                        <h4 style="color: var(--text-dim); margin-bottom: 1rem;">Professional Tools:</h4>
+                        <div class="tools-list">
+                            {% if roadmap.intermediate.tools %}
+                            {% for tool in roadmap.intermediate.tools %}
+                            <span class="tool-tag" style="background: rgba(99, 102, 241, 0.1); color: var(--primary); border: 1px solid rgba(99, 102, 241, 0.2); padding: 0.4rem 1rem; border-radius: 10px; font-size: 0.875rem; font-weight: 600;">{{ tool }}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Stage -->
+        <div class="timeline-stage">
+            <div class="stage-marker advanced">
+                <div class="marker-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="stage-label">Phase 03</div>
+            </div>
+            <div class="stage-content">
+                <div class="stage-card glass-card" style="padding: 2.5rem; margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--secondary);">{{ roadmap.advanced.title }}</h3>
+                    <div class="stage-steps">
+                        <h4 style="color: var(--text-dim); margin-bottom: 1rem;">Mastery Level:</h4>
+                        <ul style="list-style: none;">
+                            {% if roadmap.advanced.steps %}
+                            {% for step in roadmap.advanced.steps %}
+                            <li style="margin-bottom: 0.75rem;"><i class="fas fa-star" style="color: var(--secondary); margin-right: 0.75rem;"></i> {{ step }}</li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="stage-tools" style="margin-top: 2rem;">
+                        <h4 style="color: var(--text-dim); margin-bottom: 1rem;">Expert Ecosystem:</h4>
+                        <div class="tools-list">
+                            {% if roadmap.advanced.tools %}
+                            {% for tool in roadmap.advanced.tools %}
+                            <span class="tool-tag" style="background: rgba(168, 85, 247, 0.1); color: var(--secondary); border: 1px solid rgba(168, 85, 247, 0.2); padding: 0.4rem 1rem; border-radius: 10px; font-size: 0.875rem; font-weight: 600;">{{ tool }}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="roadmap-actions">
+        <a href="{{ url_for('results') }}" class="btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to Results
+        </a>
+        <a href="{{ url_for('cv_generator') }}" class="btn-primary">
+            <i class="fas fa-file-alt"></i> Generate Your CV
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

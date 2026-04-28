@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="cv-container fade-in">
+    <div class="cv-header" style="text-align: center; margin-bottom: 3rem;">
+        <h1 class="hero-title"><span class="gradient-text">Neural CV</span> Builder</h1>
+        <p class="hero-description">Fill in the details to generate your professional AI-optimized CV.</p>
+    </div>
+
+    <div class="cv-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <!-- CV Form -->
+        <div class="cv-form-section glass-card" style="padding: 2rem;">
+            <form method="POST" class="cv-form" id="cvForm">
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" name="name" required placeholder="Sarah Johnson" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%;">
+                    </div>
+                    <div class="form-group">
+                        <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-map-marker-alt"></i> Location</label>
+                        <input type="text" name="location" placeholder="New York, USA" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%;">
+                    </div>
+                </div>
+
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" name="email" required placeholder="sarah@example.com" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%;">
+                    </div>
+                    <div class="form-group">
+                        <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-phone"></i> Phone</label>
+                        <input type="tel" name="phone" placeholder="+1 234 567 8900" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%;">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-align-left"></i> Professional Summary</label>
+                    <textarea name="summary" rows="2" placeholder="Brief overview of your career goals..." style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%; resize: none;"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-bolt"></i> Skills (comma-separated)</label>
+                    <input type="text" name="skills" required placeholder="Python, React, Project Management..." style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%;">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-graduation-cap"></i> Education</label>
+                    <textarea name="education" rows="2" required placeholder="B.Sc. Computer Science, XYZ University, 2020" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%; resize: none;"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-briefcase"></i> Work Experience</label>
+                    <textarea name="experience" rows="3" placeholder="Software Intern at TechCorp (2022-2023)..." style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%; resize: none;"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-project-diagram"></i> Key Projects</label>
+                    <textarea name="projects" rows="2" placeholder="AI Chatbot, E-commerce Website..." style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%; resize: none;"></textarea>
+                </div>
+
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-certificate"></i> Certifications</label>
+                        <input type="text" name="certifications" placeholder="AWS Certified, Google Data Analytics" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%;">
+                    </div>
+                    <div class="form-group">
+                        <label style="color: var(--text-dim); margin-bottom: 0.5rem; display: block;"><i class="fas fa-language"></i> Languages</label>
+                        <input type="text" name="languages" placeholder="English (Fluent), Arabic (Native)" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: white; padding: 0.75rem; border-radius: 12px; width: 100%;">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                    <i class="fas fa-magic"></i> Update Neural Preview
+                </button>
+            </form>
+        </div>
+
+        <!-- CV Preview -->
+        <div class="cv-preview-section glass-card" style="padding: 0; background: white; color: #1e293b; position: relative; min-height: 800px;">
+            {% if cv_data %}
+            <div id="cv-to-print" class="cv-preview" style="padding: 40px; background: white; width: 100%; min-height: 297mm;">
+                <div class="cv-preview-header" style="border-bottom: 3px solid #6366f1; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                    <h2 style="font-size: 2.5rem; color: #1e293b; margin-bottom: 0.5rem; font-weight: 800;">{{ cv_data.name }}</h2>
+                    <div class="contact-info" style="color: #64748b; font-size: 0.9rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+                        {% if cv_data.email %}<span><i class="fas fa-envelope" style="color: #6366f1;"></i> {{ cv_data.email }}</span>{% endif %}
+                        {% if cv_data.phone %}<span><i class="fas fa-phone" style="color: #6366f1;"></i> {{ cv_data.phone }}</span>{% endif %}
+                        {% if cv_data.location %}<span><i class="fas fa-map-marker-alt" style="color: #6366f1;"></i> {{ cv_data.location }}</span>{% endif %}
+                    </div>
+                </div>
+                
+                {% if cv_data.summary %}
+                <div class="cv-section" style="margin-bottom: 1.5rem;">
+                    <h3 style="color: #6366f1; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem;">Professional Summary</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.6; color: #334155;">{{ cv_data.summary }}</p>
+                </div>
+                {% endif %}
+
+                <div class="cv-section" style="margin-bottom: 1.5rem;">
+                    <h3 style="color: #6366f1; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem;">Skills & Expertise</h3>
+                    <div class="skills-list" style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                        {% for skill in cv_data.skills %}
+                        <span class="skill-tag" style="background: #f1f5f9; color: #475569; padding: 0.3rem 0.6rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; border: 1px solid #e2e8f0;">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="cv-section" style="margin-bottom: 1.5rem;">
+                    <h3 style="color: #6366f1; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem;">Education</h3>
+                    <p style="white-space: pre-line; line-height: 1.6; font-size: 0.95rem; color: #334155;">{{ cv_data.education }}</p>
+                </div>
+
+                {% if cv_data.experience %}
+                <div class="cv-section" style="margin-bottom: 1.5rem;">
+                    <h3 style="color: #6366f1; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem;">Experience</h3>
+                    <p style="white-space: pre-line; line-height: 1.6; font-size: 0.95rem; color: #334155;">{{ cv_data.experience }}</p>
+                </div>
+                {% endif %}
+
+                {% if cv_data.projects %}
+                <div class="cv-section" style="margin-bottom: 1.5rem;">
+                    <h3 style="color: #6366f1; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem;">Key Projects</h3>
+                    <p style="white-space: pre-line; line-height: 1.6; font-size: 0.95rem; color: #334155;">{{ cv_data.projects }}</p>
+                </div>
+                {% endif %}
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    {% if cv_data.certifications %}
+                    <div class="cv-section">
+                        <h3 style="color: #6366f1; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem;">Certifications</h3>
+                        <p style="font-size: 0.95rem; color: #334155;">{{ cv_data.certifications }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if cv_data.languages %}
+                    <div class="cv-section">
+                        <h3 style="color: #6366f1; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem;">Languages</h3>
+                        <p style="font-size: 0.95rem; color: #334155;">{{ cv_data.languages }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="cv-overlay-actions" style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px;">
+                <button id="downloadPDF" class="btn-primary" style="background: #1e293b; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                </button>
+            </div>
+            {% else %}
+            <div class="cv-placeholder" style="text-align: center; padding: 6rem 2rem;">
+                <i class="fas fa-file-invoice" style="font-size: 4rem; color: #e2e8f0; margin-bottom: 2rem; display: block;"></i>
+                <h3 style="color: #94a3b8;">Real-time CV Preview</h3>
+                <p style="color: #94a3b8; margin-top: 1rem;">Enter your professional details to see your high-impact CV here.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- html2pdf.js Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+    /* Ensure the CV preview is always visible and stable for capture */
+    #cv-to-print {
+        color: #1e293b !important;
+        background: white !important;
+        box-sizing: border-box;
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+    
+    .cv-preview-section {
+        background: #f1f5f9 !important; /* Light background for the container */
+    }
+    
+    @media print {
+        body * { visibility: hidden; }
+        #cv-to-print, #cv-to-print * { visibility: visible; }
+        #cv-to-print {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cvForm = document.getElementById('cvForm');
+        const downloadBtn = document.getElementById('downloadPDF');
+        
+        // Load data from localStorage
+        const savedData = localStorage.getItem('cv_data');
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            Object.keys(data).forEach(key => {
+                const input = cvForm.querySelector(`[name="${key}"]`);
+                if (input) input.value = data[key];
+            });
+        }
+
+        // Save data to localStorage on any input change
+        cvForm.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('input', () => {
+                const formData = new FormData(cvForm);
+                const data = Object.fromEntries(formData.entries());
+                localStorage.setItem('cv_data', JSON.stringify(data));
+            });
+        });
+
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function() {
+                const element = document.getElementById('cv-to-print');
+                
+                // Show a simple loading state on button
+                const originalContent = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+                downloadBtn.disabled = true;
+
+                const opt = {
+                    margin:       [10, 10, 10, 10],
+                    filename:     'My_Professional_CV.pdf',
+                    image:        { type: 'jpeg', quality: 1.0 },
+                    html2canvas:  { 
+                        scale: 2, 
+                        useCORS: true,
+                        backgroundColor: '#ffffff',
+                        letterRendering: true,
+                        scrollY: 0,
+                        scrollX: 0
+                    },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+
+                // Add a small delay to ensure rendering is complete
+                setTimeout(() => {
+                    html2pdf().set(opt).from(element).save().then(() => {
+                        downloadBtn.innerHTML = originalContent;
+                        downloadBtn.disabled = false;
+                    }).catch(err => {
+                        console.error('PDF Generation Error:', err);
+                        downloadBtn.innerHTML = originalContent;
+                        downloadBtn.disabled = false;
+                    });
+                }, 500);
+            });
+        }
+    });
+</script>
+{% endblock %}

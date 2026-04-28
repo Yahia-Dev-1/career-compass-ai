@@ -1,0 +1,72 @@
+<!-- templates/results.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="results-container fade-in">
+    <div class="results-header" style="text-align: center; margin-bottom: 4rem;">
+        <h1 class="hero-title"><span class="gradient-text">Your Best Matches</span></h1>
+        <p class="hero-description">AI analysis complete. Here are your top career paths.</p>
+    </div>
+
+    <div class="recommendations-grid">
+        {% for career in recommendations %}
+        <div class="recommendation-card glass-card">
+            <div class="card-icon" style="color: {{ career.color }}; background: rgba(255,255,255,0.03); border: 1px solid {{ career.color }}44;">
+                <i class="fas {{ career.icon }}"></i>
+            </div>
+            <div class="card-content">
+                <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">{{ career.name }}</h2>
+                <p class="hero-description" style="font-size: 1rem; text-align: left; margin: 0.5rem 0;">{{ career.description }}</p>
+                <div class="match-score">
+                    <div class="score-bar">
+                        <div class="score-fill" style="width: {{ (career.score / 50) * 100 }}%; background: linear-gradient(90deg, {{ career.color }}, var(--primary));"></div>
+                    </div>
+                    <span class="score-text" style="font-weight: 800; color: {{ career.color }};">{{ ((career.score / 50) * 100)|int }}% MATCH</span>
+                </div>
+                <div class="reason-box glass-card" style="padding: 1.5rem; background: rgba(255,255,255,0.02); margin-top: 1.5rem;">
+                    <i class="fas fa-sparkles" style="color: var(--accent); margin-right: 0.5rem;"></i>
+                    <p style="display: inline; color: var(--text-dim);">{{ career.reason }}</p>
+                </div>
+                <div class="card-actions" style="margin-top: 2rem;">
+                    <a href="{{ url_for('roadmap', career=career.id) }}" class="btn-primary">
+                        <i class="fas fa-map"></i> View Roadmap
+                    </a>
+                    <a href="{{ url_for('cv_generator') }}" class="btn-secondary">
+                        <i class="fas fa-file-signature"></i> Build CV
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="results-footer">
+        <div class="next-steps">
+            <h3><i class="fas fa-compass"></i> Your Next Steps</h3>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <p>Explore the detailed learning roadmap for your top career choice</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <p>Generate your professional CV using our AI CV Builder</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <p>Start building skills with recommended resources and tools</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="{{ url_for('quiz') }}" class="btn-secondary">
+                <i class="fas fa-redo"></i> Retake Quiz
+            </a>
+            <a href="{{ url_for('home') }}" class="btn-primary">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
